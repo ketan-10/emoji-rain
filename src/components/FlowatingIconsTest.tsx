@@ -16,17 +16,36 @@ const FlowtingIcons: React.FC<Props> = ({emoji, onEmojiRemove}) => {
 
 
 
+  // Read from bottom up
   useEffect(() => {
-    setTimeout(() => {
+
+    // This Will still not work as expected,
+    // because even though we put onEmojiRemove dependecncy, 
+    // so at least will not have the old onEmojiRemove function (with old closure)
+    // But when onEmojiRemove changes timeout will reset, 
+    // so it will take more time..
+    const timeout = setTimeout(() => {
       // console.log(onEmojiRemove)
       onEmojiRemove(emoji);
-    }, 5000);
-  },[])
+    }, 5000000);
+
+    // Even after added onEmojiRemove dependency,
+    // it will still call old fuction as timeout is havent removed
+    // so we remove it here
+    return () => {
+      clearTimeout(timeout);
+    }
+  }
+  // If we dont put dependency here, it will be evaluated only once
+  // and old onEmojiRemove will be called.
+  ,[onEmojiRemove, emoji])
+
 
   return (
-    <>
+    <div>
       {JSON.stringify(emoji)}
-    </>
+      <button onClick={() => onEmojiRemove(emoji)}>Child Button</button>
+    </div>
   )
 }
 

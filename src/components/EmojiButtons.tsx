@@ -1,74 +1,60 @@
-import React, { useState, useMemo,useCallback, useRef} from 'react'
-import { Icon, IconButton } from '@material-ui/core';
+import React, { useState} from 'react'
 import FlowtingIcons from './FlowatingIconsTest';
 import { Emoji } from '../types/Emoji';
 import { v4 as uuidv4 } from 'uuid'
 
-const styles = {
-  largeIcon: {
-    // fontSize: '1.5rem',
-  },
-  // decreseOpacity: {
-  //   opacity: 0.5,
-  // }
-};
-
-
-interface Props {
-  emojis: string;
-}
-
-
 // https://stackoverflow.com/questions/24531751/how-can-i-split-a-string-containing-emoji-into-an-array
 
-const EmojiButtons: React.FC<Props> = ({emojis:[...emojis]}) => {
+function EmojiButtons() {
 
-
- const [flowtingEmojis, setFlowtingEmojis] = useState<Array<Emoji>>([]);
+ const [value, setValue] = useState<Array<Emoji>>([]);
 
   const handleClick= (event: any) => {
-    const emoji = event.target.innerText as string; 
-    setFlowtingEmojis(flowtingEmojis.concat({
-      value: emoji,
-      id: uuidv4(), 
+    const myValue = event.target.innerText as string; 
+
+    const myUuid = uuidv4();  
+    setValue(value.concat({
+      value: myValue,
+      id: myUuid, 
     }));
+
+    // immitivly after adding the value,
+    // we shoud write logic to remove it from the array
+
+    setTimeout(() => {
+      
+      // setValue(value.filter(item => item.value !== myValue));
+      
+      // The above solution will not work, 
+      // because the array {value} will modified, but here setTimeout will use Old {value} 
+      // stored in it's closure,
+      
+      setValue(v => v.filter(item => item.id !== myUuid));
+    }, 4000)
+
   }
 
-  const removeFlowtingEmoji = (emoji: Emoji) => {
-    // setFlowtingEmojis(flowtingEmojis.filter(e => e.id !== emoji.id));
-    console.log(emoji, " Pre: ",flowtingEmojis);
-    const newEmojies = flowtingEmojis.filter(e => e.id !== emoji.id);
-    console.log(emoji, " Post: ", newEmojies);
-    setFlowtingEmojis(newEmojies);
+  const removeFlowtingEmoji = (x: Emoji) => {
+    setValue(value.filter(e => e.id !== x.id));
   };
 
   // const test = useRef(removeFlowtingEmoji);
   // test.current = removeFlowtingEmoji;
 
-  const emojisUnique = [...new Set(emojis)];
   return (
     <>
-      <button onClick={() => {removeFlowtingEmoji(flowtingEmojis[flowtingEmojis.length -1])}}> Re-render</button>
-      <div className="emoji-buttons-container">
-        {emojisUnique.map((emoji) => {
-          return (
-            <div key={emoji} className="emoji-icon-container">
-              {flowtingEmojis.filter(x=> x.value===emoji).map(emoji => 
-                <FlowtingIcons 
-                key={emoji.id} 
-                emoji={emoji} 
-                onEmojiRemove={(e: Emoji) => removeFlowtingEmoji(e)}/>
-              )}
-              <IconButton
-                style={styles.largeIcon}
-                color="primary"
-                onClick={handleClick}>
-                  {emoji}
-              </IconButton>
-            </div>
-          )
-        })}
-      </div>
+        <button
+          onClick={(e) => handleClick(e)}>
+            😀
+        </button>
+        
+        {value.map(v => 
+          <FlowtingIcons 
+          key={v.id} 
+          emoji={v} 
+          onEmojiRemove={removeFlowtingEmoji}/>
+        )}
+            
     </>
   )
 }
