@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useRef } from 'react'
 import FlowtingIcons from './FlowatingIconsTest';
 import { Emoji } from '../types/Emoji';
 import { v4 as uuidv4 } from 'uuid'
@@ -30,7 +30,7 @@ function EmojiButtons() {
       // stored in it's closure,
       
       setValue(v => v.filter(item => item.id !== myUuid));
-    }, 4000)
+    }, 4000000)
 
   }
 
@@ -38,8 +38,13 @@ function EmojiButtons() {
     setValue(value.filter(e => e.id !== x.id));
   };
 
-  // const test = useRef(removeFlowtingEmoji);
-  // test.current = removeFlowtingEmoji;
+  // useRef will update the refrerence of the removeFlowtingEmoji function
+  // on Each render => so clouser of {value} array inside function 'removeFlowtingEmoji' will be up to date
+  // ( Also, as we are using 'useRef' component will not re-render on removeFlowtingEmoji function change,
+  // But, it already re-render anyways, so this functinality is not used here. )
+  const test = useRef(removeFlowtingEmoji);
+  // 'useRef' is like creating a class with 'current' as a pointer to the current object.
+  test.current = removeFlowtingEmoji;
 
   return (
     <>
@@ -52,7 +57,14 @@ function EmojiButtons() {
           <FlowtingIcons 
           key={v.id} 
           emoji={v} 
-          onEmojiRemove={removeFlowtingEmoji}/>
+
+          // Does Not Work: (as this will directly send the current function at the time of the render)
+          //                (and in child component we are using useEffect with [] dependency, 
+          //                 so it will only use first version of function)
+          //                ( it's like sending the function as string or current snapshot of the function without access of 'test' ref)  
+          // onEmojiRemove={test.current}/>
+          // Works:         (as this contains the 'test' ref, so it will use the latest current function pointer)
+          onEmojiRemove={(e: Emoji) => test.current(e)}/>
         )}
             
     </>

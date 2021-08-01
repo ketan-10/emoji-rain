@@ -15,6 +15,7 @@ interface Props {
 const FlowtingIcons: React.FC<Props> = ({emoji, onEmojiRemove}) => {
 
 
+  /*
 
   // Read from bottom up
   useEffect(() => {
@@ -27,7 +28,7 @@ const FlowtingIcons: React.FC<Props> = ({emoji, onEmojiRemove}) => {
     const timeout = setTimeout(() => {
       // console.log(onEmojiRemove)
       onEmojiRemove(emoji);
-    }, 5000000);
+    }, 500000);
 
     // Even after added onEmojiRemove dependency,
     // it will still call old fuction as timeout is havent removed
@@ -39,6 +40,16 @@ const FlowtingIcons: React.FC<Props> = ({emoji, onEmojiRemove}) => {
   // If we dont put dependency here, it will be evaluated only once
   // and old onEmojiRemove will be called.
   ,[onEmojiRemove, emoji])
+
+*/
+
+  // another solution to 
+  // change onEmojiRemove by refrence.
+  useEffect(() => {
+    setTimeout(() => {
+      onEmojiRemove(emoji);
+    }, 5000);
+  },[])
 
 
   return (
