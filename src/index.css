@@ -1,3 +1,4 @@
+/* Default CSS */
 body {
   margin: 0;
   padding: 0;
@@ -6,9 +7,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
 }
 
 code {
@@ -16,10 +14,10 @@ code {
     monospace;
 }
 
+/* My CSS */
 .emoji-buttons-container{
-  width: 100vw;
+
   display: flex;
-  /* align-items: center; */
   justify-content: center;
 }
 .floting-icon{
@@ -27,13 +25,5 @@ code {
   margin-top: 1rem;
   margin-left: 1rem;
   position: absolute;
-  top: 100px;
-  opacity: 0.1;
   
 }
-
-/* .emoji-icon-container{
-
-
-  position: relative;
-} */

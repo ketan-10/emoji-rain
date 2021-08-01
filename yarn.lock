@@ -389,6 +389,11 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
+"@types/gaussian@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@types/gaussian/-/gaussian-1.1.3.tgz#7c8413c735ab6c8dda9b62e259a10547110b7468"
+  integrity sha512-eb+0rt48z5BVmSIXuC99vC4V9BTfI9G/0goH1TyH2FAGDr3Qp0IHcGlhy+KjK6+ukO5tuU7XBfvdXRCwFXWs3A==
+
 "@types/prop-types@*":
   version "15.7.4"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
@@ -566,6 +571,11 @@ function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
+
+gaussian@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/gaussian/-/gaussian-1.2.0.tgz#5b081744008c1b0a8eb510da695ed7328fb8913a"
+  integrity sha512-Pz/InFmDZ6VqCbXF+2+O6USIbPUPWhJ7DnqrZKfo9mMHszCd4pBad3WCVa9ruzzrBizYonsv0ZBmuv4rR8NRQg==
 
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
