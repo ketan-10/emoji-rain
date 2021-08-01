@@ -48,8 +48,7 @@ function EmojiButtons() {
 
   return (
     <>
-        <button
-          onClick={(e) => handleClick(e)}>
+        <button onClick={(e) => handleClick(e)}>
             😀
         </button>
         
@@ -59,8 +58,8 @@ function EmojiButtons() {
           emoji={v} 
 
           // Does Not Work: (as this will directly send the current function at the time of the render)
-          //                (and in child component we are using useEffect with [] dependency, 
-          //                 so it will only use first version of function)
+          //                (In child component we are using useEffect with [] dependency, 
+          //                 so it will only use first version of function, not the pointer value)
           //                ( it's like sending the function as string or current snapshot of the function without access of 'test' ref)  
           // onEmojiRemove={test.current}/>
           // Works:         (as this contains the 'test' ref, so it will use the latest current function pointer)
