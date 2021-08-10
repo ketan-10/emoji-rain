@@ -16,14 +16,11 @@ code {
 
 /* My CSS */
 .emoji-buttons-container{
-
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
 }
 .floting-icon{
-
   margin-top: 1rem;
   margin-left: 1rem;
   position: absolute;
-  
 }
