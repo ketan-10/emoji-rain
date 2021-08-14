@@ -13,7 +13,7 @@ const insertConnection = async (connectionId: string) => {
   const params = {
     TableName: DYNAMODB_NAME,
     Item: { 
-      'connections': connectionId,
+      'connection': connectionId,
     }
   }
   return await ddb.put(params).promise();    
@@ -23,7 +23,7 @@ const deleteConnection = async (connectionId: string) => {
   const params = {
     TableName: DYNAMODB_NAME,
     Key: { 
-        'connections': connectionId,
+        'connection': connectionId,
     }
   }
   return await ddb.delete(params).promise(); 
@@ -33,7 +33,7 @@ const readAllConnections = async () => {
     TableName: DYNAMODB_NAME,
   }
   const items =  await ddb.scan(params).promise();
-  return items.Items?.map(i => i.connections as string) ?? [];
+  return items.Items?.map(i => i.connection as string) ?? [];
 }
 
 const sendOne = async (id: string, myEmoji: string) => {
@@ -84,7 +84,6 @@ export const handler : Handler = async (event: APIGatewayProxyEvent): Promise<AP
       body: err.message,
     };
   }
-
 
   const response = {
     statusCode: 200,

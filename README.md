@@ -31,3 +31,4 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
  * `npm install aws-sdk && npm i --save-dev @types/aws-sdk`
  * `npx ncc build index.ts -o dist/ncc`             build lambda 
  * `zip -j dist/deploy.zip ./dist/ncc/*`           build zip
+ * `cdk deploy --outputs-file ./cdk-outputs.json`  cdk output file

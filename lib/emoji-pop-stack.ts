@@ -5,39 +5,47 @@ import * as lambda from "@aws-cdk/aws-lambda";
 import * as iam from "@aws-cdk/aws-iam";
 import * as dynamodb from "@aws-cdk/aws-dynamodb";
 
+
+
+
 export class EmojiPopStack extends cdk.Stack {
+
+  // to get access in testing
+  public readonly emojiRainHandler: lambda.Function;
+
+
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const counterTable = new dynamodb.Table(this, "counterTable", {
-      partitionKey: { name: 'connections', type: dynamodb.AttributeType.STRING },
+    const connectionsTable = new dynamodb.Table(this, "connectionsTable", {
+      partitionKey: { name: 'connection', type: dynamodb.AttributeType.STRING },
     });
 
-    const counterLambda = new lambda.Function(this, "counterLambda", {
+    const emojiRainHandler = new lambda.Function(this, "emojiRainHandler", {
       handler: "index.handler",
       runtime: lambda.Runtime.NODEJS_14_X,
       // code: lambda.Code.fromAsset('lambda'),
       code: lambda.Code.fromAsset('lambdas/emoji-rain-handler/dist/deploy.zip'),
       environment: {
-        DYNAMODB_NAME: counterTable.tableName,
+        DYNAMODB_NAME: connectionsTable.tableName,
       }
     });
 
     
 
-    const webSocketApi = new apigw2.WebSocketApi(this, 'mywsapi', {
-      connectRouteOptions: { integration: new apigw2i.LambdaWebSocketIntegration({ handler: counterLambda }) },
-      disconnectRouteOptions: { integration: new apigw2i.LambdaWebSocketIntegration({ handler: counterLambda }) },
-      defaultRouteOptions: { integration: new apigw2i.LambdaWebSocketIntegration({ handler: counterLambda }) },
+    const webSocketApi = new apigw2.WebSocketApi(this, 'emojiRainSocketAPI', {
+      connectRouteOptions: { integration: new apigw2i.LambdaWebSocketIntegration({ handler: emojiRainHandler }) },
+      disconnectRouteOptions: { integration: new apigw2i.LambdaWebSocketIntegration({ handler: emojiRainHandler }) },
+      defaultRouteOptions: { integration: new apigw2i.LambdaWebSocketIntegration({ handler: emojiRainHandler }) },
     });
     
     webSocketApi.addRoute('sendEmoji', {
       integration: new apigw2i.LambdaWebSocketIntegration({
-        handler: counterLambda,
+        handler: emojiRainHandler,
       }),
     });
     
-    const webSocketStage = new apigw2.WebSocketStage(this, 'mystage', {
+    const webSocketStage = new apigw2.WebSocketStage(this, 'emojiRainSocketAPIStage', {
       webSocketApi,
       stageName: 'production',
       autoDeploy: true,
@@ -48,17 +56,19 @@ export class EmojiPopStack extends cdk.Stack {
     const callbackURL = webSocketStage.callbackUrl;
     // https://${this.api.apiId}.execute-api.${s.region}.${s.urlSuffix}/${urlPath}
 
-    counterLambda.addEnvironment("CALLBACK_URL", callbackURL);
-    counterLambda.addEnvironment("WEB_SOCKET_URL", webSocketURL);
-    
+    emojiRainHandler.addEnvironment("CALLBACK_URL", callbackURL);
     // there must be a better way to do this!!.
-    counterLambda.role?.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonAPIGatewayInvokeFullAccess"))
+    emojiRainHandler.role?.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonAPIGatewayInvokeFullAccess"))
     // addPermission to give resouce base policy-> pincliple is who will have the access.
-    counterTable.grantFullAccess(counterLambda);
-
-
-
+    connectionsTable.grantFullAccess(emojiRainHandler);
     
+    new cdk.CfnOutput(this, 'WEB_SOCKET_URL', {
+      value: webSocketURL,
+    });
+
+    this.emojiRainHandler = emojiRainHandler;
+
+
     
   }
 }
