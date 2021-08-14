@@ -14,9 +14,10 @@ export class EmojiPopStack extends cdk.Stack {
     });
 
     const counterLambda = new lambda.Function(this, "counterLambda", {
-      handler: "emoji-rain-handler.handler2",
+      handler: "index.handler",
       runtime: lambda.Runtime.NODEJS_14_X,
-      code: lambda.Code.fromAsset('lambda'),
+      // code: lambda.Code.fromAsset('lambda'),
+      code: lambda.Code.fromAsset('lambdas/emoji-rain-handler/dist/deploy.zip'),
       environment: {
         DYNAMODB_NAME: counterTable.tableName,
       }
