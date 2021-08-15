@@ -70,11 +70,8 @@ jobs:
 
 
   upload-url-frontend:
-    deploy-aws:
-      runs-on: ubuntu-latest
-    
     needs: deploy-aws
-
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout Master
       uses: actions/checkout@v2
