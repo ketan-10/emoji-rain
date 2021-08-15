@@ -3,6 +3,8 @@
 
 ### [Hosted URL](https://ketan-10.github.io/emoji-rain/)
 
+### For Backend code please check [`server`](https://github.com/ketan-10/emoji-rain/tree/server) branch
+
 ## Setup
 
 `git clone https://github.com/ketan-10/emoji-rain.git`
