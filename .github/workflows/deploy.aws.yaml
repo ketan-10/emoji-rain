@@ -60,7 +60,7 @@ jobs:
       run: |
         cdk bootstrap
         cdk deploy --outputs-file ./cdk-outputs.json
-        cat ./cdk-output.json
+        cat ./cdk-outputs.json
 
     - name: Upload cdk-output
       uses: actions/upload-artifact@v2
@@ -87,7 +87,6 @@ jobs:
     
     - name: Download cdk-output
       run: ls
-    
       
 
     
