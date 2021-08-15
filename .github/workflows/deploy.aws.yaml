@@ -99,11 +99,11 @@ jobs:
 # # git remote set-url origin https://${{secrets.MY_PERSONAL_TOKEN_PUBLIC}}@github.com/${{github.repository}}
 # https://docs.github.com/en/actions/reference/authentication-in-a-workflow#using-the-github_token-in-a-workflow
 # git commit -m "[BOT] [CDK-OUTPUT]" --allow-empty
-# git config --global user.email ${{secrets.MY_EMAIL}}
-# git config --global user.name ${{secrets.MY_USERNAME}}
         
     - name: Push to master
       run: |
+        git config --global user.email ${{secrets.MY_EMAIL}}
+        git config --global user.name ${{secrets.MY_USERNAME}}
         git remote set-url origin https://${{secrets.MY_PERSONAL_TOKEN_PUBLIC}}@github.com/${{github.repository}}
         git status
         git add artifact/cdk-outputs.json
