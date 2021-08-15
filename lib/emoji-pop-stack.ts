@@ -6,8 +6,6 @@ import * as iam from "@aws-cdk/aws-iam";
 import * as dynamodb from "@aws-cdk/aws-dynamodb";
 
 
-
-
 export class EmojiPopStack extends cdk.Stack {
 
   // to get access in testing
@@ -30,8 +28,6 @@ export class EmojiPopStack extends cdk.Stack {
         DYNAMODB_NAME: connectionsTable.tableName,
       }
     });
-
-    
 
     const webSocketApi = new apigw2.WebSocketApi(this, 'emojiRainSocketAPI', {
       connectRouteOptions: { integration: new apigw2i.LambdaWebSocketIntegration({ handler: emojiRainHandler }) },
