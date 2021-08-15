@@ -21,15 +21,46 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies
+    # https://stackoverflow.com/questions/58139175/running-actions-in-another-directory
+    
+    - name: Lambda - Install dependencies
       working-directory: ./lambdas/emoji-rain-handler
       run: npm i
 
-    - name: Build using NCC
+    - name: Lambda - Build using NCC
       working-directory: ./lambdas/emoji-rain-handler
       run: npx ncc build index.ts -o dist/ncc
 
-    - name: Create ZIP
+    - name: Lambda - Create ZIP
       working-directory: ./lambdas/emoji-rain-handler
       run: zip -j dist/deploy.zip ./dist/ncc/*
+
+    # CDK 
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+        aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+        aws-region: us-east-2
+
+    - name: Install AWS CDK
+      run: npm install -g aws-cdk
+
+    - name: CDK - Install dependencies
+      run: npm i
+
+    - name: CDK - Test
+      run: npm run test
+
+    - name: CDK - Synth
+      run: cdk synth
+
+    - name: CDK - Deploy
+      run: |
+        cdk bootstrap
+        cdk deploy --outputs-file ./cdk-outputs.json
+        cat cdk-output.json
+      
+      
     
