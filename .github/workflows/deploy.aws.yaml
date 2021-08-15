@@ -25,11 +25,11 @@ jobs:
       run: cd lambdas/emoji-rain-handler
 
     - name: Install dependencies
-      env:
-        CI: true
-      run: | 
-        npm ci
+      run: npm i
     
+    - name: PWD
+      run: pwd
+
     - name: Build using NCC
       run: npx ncc build index.ts -o dist/ncc
 
