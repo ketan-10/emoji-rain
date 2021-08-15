@@ -94,7 +94,7 @@ jobs:
       run: ls
 
 # https://docs.github.com/en/actions/reference/authentication-in-a-workflow#using-the-github_token-in-a-workflow
-# git commit -m "[BOT] [CDK-OUTPUT]" --allow-empty
+# git commit -m "[BOT] [CDK-OUTPUT]" --allow-empty 
         
     - name: Push to master
       run: |
