@@ -16,60 +16,63 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
+    # - name: Set up Node.js ${{ matrix.node-version }}
+    #   uses: actions/setup-node@v2
+    #   with:
+    #     node-version: ${{ matrix.node-version }}
 
-    # https://stackoverflow.com/questions/58139175/running-actions-in-another-directory
+    # # https://stackoverflow.com/questions/58139175/running-actions-in-another-directory
     
-    - name: Lambda - Install dependencies
-      working-directory: ./lambdas/emoji-rain-handler
-      run: npm i
+    # - name: Lambda - Install dependencies
+    #   working-directory: ./lambdas/emoji-rain-handler
+    #   run: npm i
 
-    - name: Lambda - Build using NCC
-      working-directory: ./lambdas/emoji-rain-handler
-      run: npx ncc build index.ts -o dist/ncc
+    # - name: Lambda - Build using NCC
+    #   working-directory: ./lambdas/emoji-rain-handler
+    #   run: npx ncc build index.ts -o dist/ncc
 
-    - name: Lambda - Create ZIP
-      working-directory: ./lambdas/emoji-rain-handler
-      run: zip -j dist/deploy.zip ./dist/ncc/*
+    # - name: Lambda - Create ZIP
+    #   working-directory: ./lambdas/emoji-rain-handler
+    #   run: zip -j dist/deploy.zip ./dist/ncc/*
 
-    # CDK 
+    # # CDK 
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
-        aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-        aws-region: us-east-2
+    # - name: Configure AWS Credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+    #     aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+    #     aws-region: us-east-2
 
-    - name: Install AWS CDK
-      run: npm install -g aws-cdk
+    # - name: Install AWS CDK
+    #   run: npm install -g aws-cdk
 
-    - name: CDK - Install dependencies
-      run: npm i
+    # - name: CDK - Install dependencies
+    #   run: npm i
 
-    - name: CDK - Synth
-      run: cdk synth
+    # - name: CDK - Synth
+    #   run: cdk synth
 
-    - name: CDK - Test
-      run: npm run test
+    # - name: CDK - Test
+    #   run: npm run test
 
-    - name: CDK - Diff
-      run: cdk diff
+    # - name: CDK - Diff
+    #   run: cdk diff
     
-    - name: CDK - Deploy
-      run: |
-        cdk bootstrap
-        cdk deploy --outputs-file ./cdk-outputs.json
-        cat ./cdk-outputs.json
+    # - name: CDK - Deploy
+    #   run: |
+    #     cdk bootstrap
+    #     cdk deploy --outputs-file path/to/artifact/cdk-outputs.json
+    #     cat path/to/artifact/cdk-outputs.json
+
+    - name: temp
+      run: echo Hello > path/to/artifact/cdk-outputs.json
 
     - name: Upload cdk-outputs artifact
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: ./cdk-outputs.json
+        path: path/to/artifact/cdk-outputs.json
 
 
   upload-url-frontend:
@@ -85,7 +88,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: my-artifact
-        path: .
+        path: path/to/artifact/cdk-outputs.json
     
     - name: list files
       run: ls
