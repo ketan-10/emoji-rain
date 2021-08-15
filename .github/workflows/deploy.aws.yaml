@@ -50,11 +50,11 @@ jobs:
     - name: CDK - Install dependencies
       run: npm i
 
-    - name: CDK - Test
-      run: npm run test
-
     - name: CDK - Synth
       run: cdk synth
+
+    - name: CDK - Test
+      run: npm run test
 
     - name: CDK - Deploy
       run: |
