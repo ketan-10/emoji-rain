@@ -33,4 +33,5 @@ jobs:
         git config --global user.email ${{secrets.MY_EMAIL}}
         git config --global user.name ${{secrets.MY_USERNAME}}
         git remote set-url origin https://${{secrets.MY_PERSONAL_TOKEN_PUBLIC}}@github.com/${{secrets.MY_USERNAME}}/${{github.repository}}
+        yarn deploy
     
