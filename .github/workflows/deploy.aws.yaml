@@ -65,14 +65,15 @@ jobs:
     #     cdk deploy --outputs-file path/to/artifact/cdk-outputs.json
     #     cat path/to/artifact/cdk-outputs.json
 
+    - run: mkdir -p artifact
     - name: temp
-      run: echo Hello > path/to/artifact/cdk-outputs.json
+      run: echo Hello > artifact/cdk-outputs.json
 
     - name: Upload cdk-outputs artifact
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: path/to/artifact/cdk-outputs.json
+        path: artifact/cdk-outputs.json
 
 
   upload-url-frontend:
@@ -88,7 +89,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: my-artifact
-        path: path/to/artifact/cdk-outputs.json
+        path: artifact/cdk-outputs.json
     
     - name: list files
       run: ls
