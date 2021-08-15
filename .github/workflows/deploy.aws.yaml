@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
     
     steps:
     - name: Checkout repository
@@ -25,7 +25,10 @@ jobs:
       run: cd lambdas/emoji-rain-handler
 
     - name: Install dependencies
-      run: npm i
+      env:
+        CI: true
+      run: | 
+        npm ci
     
     - name: Build using NCC
       run: npx ncc build index.ts -o dist/ncc
