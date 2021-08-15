@@ -1,4 +1,4 @@
-name: DeployAWS
+name: Deploy Server AWS
 
 on: 
   push:
@@ -70,6 +70,7 @@ jobs:
 
 
   upload-url-frontend:
+    needs: deploy-aws
     deploy-aws:
       runs-on: ubuntu-latest
     
@@ -85,10 +86,5 @@ jobs:
           name: my-artifact
           path: ./cdk-output.json
     
-    - name: Download cdk-output
+    - name: list files
       run: ls
-      
-
-    
-      
-    
