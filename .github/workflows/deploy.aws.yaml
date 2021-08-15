@@ -21,7 +21,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     
-    - name: cd lambdas/emoji-rain-handler
+    - name: CD into lambda
       uses: cd lambdas/emoji-rain-handler
 
     - name: Install dependencies
