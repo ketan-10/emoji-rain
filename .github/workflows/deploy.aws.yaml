@@ -64,7 +64,7 @@ jobs:
     - name: CDK - Deploy
       run: |
         cdk bootstrap
-        cdk deploy --outputs-file artifact/cdk-outputs.json
+        cdk deploy --outputs-file artifact/cdk-outputs.json --require-approval never
         cat artifact/cdk-outputs.json
 
     - name: Upload cdk-outputs artifact
