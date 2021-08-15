@@ -21,10 +21,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Build Lambda
-      run: |
-        cd lambdas/emoji-rain-handler
-        npm i
-        npx ncc build index.ts -o dist/ncc
-        zip -j dist/deploy.zip ./dist/ncc/*
+    - name: Install dependencies
+      working-directory: ./lambdas/emoji-rain-handler
+      run: npm i
+
+    - name: Build using NCC
+      working-directory: ./lambdas/emoji-rain-handler
+      run: npx ncc build index.ts -o dist/ncc
+
+    - name: Create ZIP
+      working-directory: ./lambdas/emoji-rain-handler
+      run: zip -j dist/deploy.zip ./dist/ncc/*
     
