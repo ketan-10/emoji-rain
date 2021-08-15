@@ -60,7 +60,7 @@ jobs:
       run: |
         cdk bootstrap
         cdk deploy --outputs-file ./cdk-outputs.json
-        cat ./cdk-output.json
+        cat ./cdk-outputs.json
       
       
     
