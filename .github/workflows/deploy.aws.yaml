@@ -62,11 +62,11 @@ jobs:
         cdk deploy --outputs-file ./cdk-outputs.json
         cat ./cdk-outputs.json
 
-    - name: Upload cdk-output
+    - name: Upload cdk-outputs artifact
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: ./cdk-output.json
+        path: ./cdk-outputs.json
 
 
   upload-url-frontend:
@@ -78,11 +78,11 @@ jobs:
       with:
         ref: 'master'
 
-    - name: Download cdk-output
+    - name: Download cdk-outputs
       uses: actions/download-artifact@v2
       with:
         name: my-artifact
-        path: ./cdk-output.json
+        path: ./cdk-outputs.json
     
     - name: list files
       run: ls
