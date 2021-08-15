@@ -68,8 +68,8 @@ export const handler : Handler = async (event: APIGatewayProxyEvent): Promise<AP
       case 'sendEmoji':
         // Parse body
         const {myEmoji} = JSON.parse(event.body);
-        if(!myEmoji || myEmoji.length !== 1){
-          throw new Error("Invalid emoji");
+        if(!myEmoji){
+          throw new Error("No Emoji Found");
         }
         const allConnections = await readAllConnections();
         await sendAll(allConnections.filter(a => a !== connectionId), myEmoji);
