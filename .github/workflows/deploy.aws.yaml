@@ -1,0 +1,35 @@
+name: DeployAWS
+
+on: 
+  push:
+    branches: 
+      - server
+
+jobs:
+  buildMyLambda:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: cd lambdas/emoji-rain-handler
+      uses: cd lambdas/emoji-rain-handler
+
+    - name: Install dependencies
+      run: npm i
+    
+    - name: Build using NCC
+      run: npx ncc build index.ts -o dist/ncc
+
+    - name: Create ZIP
+      run: zip -j dist/deploy.zip ./dist/ncc/*
+    
