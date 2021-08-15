@@ -61,6 +61,35 @@ jobs:
         cdk bootstrap
         cdk deploy --outputs-file ./cdk-outputs.json
         cat ./cdk-output.json
+
+    - name: Upload cdk-output
+      uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: ./cdk-output.json
+
+
+  upload-url-frontend:
+    deploy-aws:
+      runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Master
+      uses: actions/checkout@v2
+      with:
+        ref: 'master'
+
+    - name: Download cdk-output
+      uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+          path: ./cdk-output.json
+    
+    - name: Download cdk-output
+      run: ls
+    
       
+
+    
       
     
