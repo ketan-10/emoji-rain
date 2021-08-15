@@ -6,7 +6,6 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "predeploy": "yarn build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

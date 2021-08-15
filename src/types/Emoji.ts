@@ -11,4 +11,4 @@ export const SKEW_MEAN = 60;
 export const SKEW_VARIANCE = 1000;
 
 export const URL = "wss://9hn172cu3a.execute-api.us-east-2.amazonaws.com/production";
-export const EMOJIES = "😀😁😂🤣😎🤗😫😯🤐😚😛😝😜😖😤😬😨😧😭😢🤪";
+export const EMOJIES = "😀😁😂🤣😎🤗😫😯🤐😚😛😝😜😖😤😬😨😧😭😢🤪😋";
