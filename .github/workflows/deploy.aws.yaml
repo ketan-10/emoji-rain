@@ -85,7 +85,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: my-artifact
-        path: ./cdk-outputs.json
+        path: .
     
     - name: list files
       run: ls
@@ -97,5 +97,5 @@ jobs:
         git remote set-url origin https://${{secrets.MY_PERSONAL_TOKEN_PUBLIC}}@github.com/${{github.repository}}
         git status
         git add cdk-outputs.json
-        git commit -m "[BOT] [CDK-OUTPUT]"
-        git push
+        git commit -m "[BOT] [CDK-OUTPUT]" --allow-empty
+        git push origin master || ture
