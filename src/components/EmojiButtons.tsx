@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { IconButton } from '@material-ui/core';
-import FlowtingIcons from './FlowatingIcons';
+import FloatingIcons from './FloatingIcons';
 import { ANIMATION_TIME, Emoji, SKEW_MEAN, SKEW_VARIANCE, URL } from '../types/Emoji';
 import { v4 as uuidv4 } from 'uuid'
 import gaussian from 'gaussian'
@@ -62,7 +62,7 @@ const EmojiButtons: React.FC<Props> = ({emojis:[...emojis]}) => {
           return (
             <div key={emoji}>
               {flowtingEmojis.filter(x=> x.value===emoji).map(emoji => 
-                <FlowtingIcons 
+                <FloatingIcons 
                 key={emoji.id} 
                 emoji={emoji} 
                 />

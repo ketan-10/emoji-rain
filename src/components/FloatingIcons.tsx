@@ -6,7 +6,7 @@ interface Props {
   emoji: Emoji;
 }
 
-const FlowtingIcons: React.FC<Props> = ({emoji}) => {
+const FloatingIcons: React.FC<Props> = ({emoji}) => {
 
   const transition = useTransition(emoji,{
     from: { x: 0, y: 0, opacity: 1 },
@@ -29,4 +29,4 @@ const FlowtingIcons: React.FC<Props> = ({emoji}) => {
   )
 }
 
-export default FlowtingIcons
+export default FloatingIcons
