@@ -35,8 +35,7 @@ export class EmojiPopStack extends cdk.Stack {
       defaultRouteOptions: { integration: new apigw2i.LambdaWebSocketIntegration({ handler: emojiRainHandler }) },
     });
     
-    webSocketApi.addRoute('sendEmoji', {
-      integration: new apigw2i.LambdaWebSocketIntegration({
+    webSocketApi.addRoute('sendEmoji', { integration: new apigw2i.LambdaWebSocketIntegration({ 
         handler: emojiRainHandler,
       }),
     });
