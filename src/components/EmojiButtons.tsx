@@ -23,14 +23,14 @@ const EmojiButtons: React.FC<Props> = ({emojis:[...emojis]}) => {
     const skew = distribution.random(1)[0];
     // as this function is called in latter time,(in webscocket)
     // it will use old flowtingEmojis value. so we are using 'setState' with callabck not using flowtingEmojis.concat(new) as it will be closured.
-    setFlowtingEmojis((lattest) => lattest.concat({
+    setFlowtingEmojis((latest) => latest.concat({
       value: emoji,
       id: uuid, 
       skew,
     }));
     // remove the emoji from the list
     setTimeout(() => {
-      setFlowtingEmojis((lattest) => lattest.filter(e => e.id !== uuid));
+      setFlowtingEmojis((latest) => latest.filter(e => e.id !== uuid));
     }, ANIMATION_TIME)
   }
 
@@ -50,7 +50,7 @@ const EmojiButtons: React.FC<Props> = ({emojis:[...emojis]}) => {
     }
   }, []);
 
-  const sendMassageToSocket = (e: string) => {
+  const sendMessageToSocket = (e: string) => {
     const sendingMessage = JSON.stringify({action:"sendEmoji", myEmoji: e});
     socket.current?.send(sendingMessage);
   }
@@ -71,7 +71,7 @@ const EmojiButtons: React.FC<Props> = ({emojis:[...emojis]}) => {
                 color="primary"
                 onClick={(e: any) => {
                     const emojiClicked = e.target.innerText;
-                    sendMassageToSocket(emojiClicked);
+                    sendMessageToSocket(emojiClicked);
                     addFlowtingEmoji(emojiClicked);
                   }}>
                   {emoji}
