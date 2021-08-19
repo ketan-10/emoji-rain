@@ -37,10 +37,15 @@ const readAllConnections = async () => {
 }
 
 const sendOne = async (id: string, myEmoji: string) => {
-  await client.postToConnection({
-      'ConnectionId': id,
-      'Data': Buffer.from(JSON.stringify({myEmoji}))
-  }).promise();  
+  try{
+    await client.postToConnection({
+        'ConnectionId': id,
+        'Data': Buffer.from(JSON.stringify({myEmoji}))
+    }).promise();
+  }catch(e){
+    console.log("Unable to send Emoji:",myEmoji, " for connectionID: ",id," Error:", e);
+  }
+    
 };
 
 const sendAll = async (ids: Array<string>, myEmoji: string) => {
