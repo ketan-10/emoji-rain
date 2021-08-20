@@ -11,4 +11,4 @@ export const SKEW_MEAN = 60;
 export const SKEW_VARIANCE = 1000;
   
 export const URL = artifact.EmojiPopStack.WEBSOCKETURL;
-export const EMOJIES = "😀😁😂🤣😎🤗😫😯🤐😚😛😝😜😖😤😬😨😧😭😢🤪😴🥲";
+export const EMOJIES = "😀😁😝😂🤣😎🤗😫😯🤐😚😜😖😤😬😨😧😭😢🤪";
