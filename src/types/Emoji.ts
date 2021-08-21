@@ -10,5 +10,5 @@ export const BOTTOM_ANIMATION_LEN = 500;
 export const SKEW_MEAN = 60;
 export const SKEW_VARIANCE = 1000;
   
-export const URL = "wss://dywmfdrgpj.execute-api.us-east-2.amazonaws.com/production";
-export const EMOJIES = "😀😁😝😂🤣😎🤗😫😯🤐🤗😚😜😖😤😬😧😭😢🤪";
+export const URL = artifact.EmojiPopStack.WEBSOCKETURL;
+export const EMOJIES = "😀😁😝😂🤣😎🤗😫😯🤐😚😜😖😤😬😨😧😭😢🤪";
