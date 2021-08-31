@@ -12,14 +12,15 @@ export class EmojiPopStack extends cdk.Stack {
   public readonly emojiRainHandler: lambda.Function;
 
   // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/time-to-live-ttl-before-you-start.html
-  static readonly AUTO_DELETE_SEC: number = 100;
+  static readonly AUTO_DELETE_SEC: number = 1000;
 
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     const connectionsTable = new dynamodb.Table(this, "connectionsTable", {
       partitionKey: { name: 'connection', type: dynamodb.AttributeType.STRING },
-      timeToLiveAttribute: 'ttl'
+      timeToLiveAttribute: 'ttl',
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     });
 
     const emojiRainHandler = new lambda.Function(this, "emojiRainHandler", {
