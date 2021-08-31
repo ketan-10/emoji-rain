@@ -4,7 +4,7 @@ import FloatingIcons from './FloatingIcons';
 import { ANIMATION_TIME, Emoji, SKEW_MEAN, SKEW_VARIANCE, URL } from '../types/Emoji';
 import { v4 as uuidv4 } from 'uuid'
 import gaussian from 'gaussian'
-import ReconnectingWebSocket from 'reconnecting-websocket';
+// import ReconnectingWebSocket from 'reconnecting-websocket';
 
 interface Props {
   emojis: string;
@@ -35,11 +35,11 @@ const EmojiButtons: React.FC<Props> = ({emojis:[...emojis]}) => {
   }
 
   // websocket
-  const socket = useRef<ReconnectingWebSocket | null>(null);
+  const socket = useRef<WebSocket | null>(null);
 
   useEffect(() => {
     if(socket.current?.readyState !== WebSocket.OPEN){
-      socket.current = new ReconnectingWebSocket(URL);
+      socket.current = new WebSocket(URL);
       socket.current.addEventListener('message', (messageEvent) => {
         const {myEmoji} = JSON.parse(messageEvent.data);
         if(emojisUnique.includes(myEmoji)) addFloatingEmoji(myEmoji);
