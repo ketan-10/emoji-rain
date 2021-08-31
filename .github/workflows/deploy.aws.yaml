@@ -59,11 +59,13 @@ jobs:
     - name: CDK - Diff
       run: cdk diff
     
+    - name: CDK - Bootstrap
+    - run: cdk bootstrap 
+
     - run: mkdir -p artifact
 
     - name: CDK - Deploy
       run: |
-        cdk bootstrap
         cdk deploy --outputs-file artifact/cdk-outputs.json --require-approval never
         cat artifact/cdk-outputs.json
 

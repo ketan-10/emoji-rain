@@ -8,7 +8,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "lambda-build": "cd lambdas/emoji-rain-handler && npm run build"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.118.0",
