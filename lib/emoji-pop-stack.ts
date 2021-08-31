@@ -11,12 +11,15 @@ export class EmojiPopStack extends cdk.Stack {
   // to get access in testing
   public readonly emojiRainHandler: lambda.Function;
 
+  // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/time-to-live-ttl-before-you-start.html
+  static readonly AUTO_DELETE_SEC: number = 100;
 
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     const connectionsTable = new dynamodb.Table(this, "connectionsTable", {
       partitionKey: { name: 'connection', type: dynamodb.AttributeType.STRING },
+      timeToLiveAttribute: 'ttl'
     });
 
     const emojiRainHandler = new lambda.Function(this, "emojiRainHandler", {
@@ -26,6 +29,7 @@ export class EmojiPopStack extends cdk.Stack {
       code: lambda.Code.fromAsset('lambdas/emoji-rain-handler/dist/deploy.zip'),
       environment: {
         DYNAMODB_NAME: connectionsTable.tableName,
+        AUTO_DELETE_SEC: EmojiPopStack.AUTO_DELETE_SEC.toString()
       }
     });
 
