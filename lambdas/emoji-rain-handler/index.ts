@@ -4,6 +4,7 @@ import {ApiGatewayManagementApi,DynamoDB} from "aws-sdk";
 // env
 const DYNAMODB_NAME = process.env.DYNAMODB_NAME!;
 const CALLBACK_URL = process.env.CALLBACK_URL!;
+const AUTO_DELETE_SEC: number = Number(process.env.CALLBACK_URL!);
 
 // services
 const client = new ApiGatewayManagementApi({endpoint: CALLBACK_URL});
@@ -14,6 +15,7 @@ const insertConnection = async (connectionId: string) => {
     TableName: DYNAMODB_NAME,
     Item: { 
       'connection': connectionId,
+      'ttl': Math.floor(Date.now() / 1000) + AUTO_DELETE_SEC
     }
   }
   return await ddb.put(params).promise();    
