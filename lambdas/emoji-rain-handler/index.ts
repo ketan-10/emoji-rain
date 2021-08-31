@@ -59,9 +59,13 @@ const sendAll = async (ids: Array<string>, myEmoji: string) => {
 
 export const handler : Handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResultV2>=> {
 
+  console.log("Event: ", event);
   try{
     const connectionId = event.requestContext.connectionId;
     const routeKey = event.requestContext.routeKey;
+
+    console.log("ConnectionId: ", connectionId);
+    console.log("RouteKey: ", routeKey);
 
     switch (routeKey) {
       case '$connect':
@@ -75,8 +79,8 @@ export const handler : Handler = async (event: APIGatewayProxyEvent): Promise<AP
       case 'sendEmoji':
         // Parse body
         const {myEmoji} = JSON.parse(event.body);
-        if(!myEmoji){
-          throw new Error("No Emoji Found");
+        if(!myEmoji || myEmoji.length > 10){
+          throw new Error("Invalid Emoji [event] : "+event);
         }
         const allConnections = await readAllConnections();
         await sendAll(allConnections.filter(a => a !== connectionId), myEmoji);
