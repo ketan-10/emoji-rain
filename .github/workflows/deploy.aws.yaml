@@ -60,7 +60,7 @@ jobs:
       run: cdk diff
     
     - name: CDK - Bootstrap
-    - run: cdk bootstrap 
+    - run: cdk bootstrap
 
     - run: mkdir -p artifact
 
