@@ -20,7 +20,6 @@
 
 - @material-ui/core : styling
 - react-spring : animation 
-- yarn add reconnecting-websocket
 
 
 # References

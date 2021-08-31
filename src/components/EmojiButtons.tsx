@@ -4,7 +4,6 @@ import FloatingIcons from './FloatingIcons';
 import { ANIMATION_TIME, Emoji, SKEW_MEAN, SKEW_VARIANCE, URL } from '../types/Emoji';
 import { v4 as uuidv4 } from 'uuid'
 import gaussian from 'gaussian'
-// import ReconnectingWebSocket from 'reconnecting-websocket';
 
 interface Props {
   emojis: string;
