@@ -8,7 +8,7 @@ const AUTO_DELETE_SEC: number = Number(process.env.CALLBACK_URL!);
 
 // services
 const client = new ApiGatewayManagementApi({endpoint: CALLBACK_URL});
-const ddb = new DynamoDB.DocumentClient();
+const ddb = new DynamoDB.DocumentClient(); 
 
 const insertConnection = async (connectionId: string) => {
   const params = {
