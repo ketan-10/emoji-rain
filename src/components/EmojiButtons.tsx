@@ -51,7 +51,7 @@ const EmojiButtons: React.FC<Props> = ({emojis:[...emojis]}) => {
 
   const sendMessageToSocket = (e: string) => {
     const sendingMessage = JSON.stringify({action:"sendEmoji", myEmoji: e});
-    socket.current?.send(sendingMessage);
+    socket.current?.readyState == WebSocket.OPEN ? socket.current.send(sendingMessage) : console.log("websocket is not ready");
   }
   
   return (
