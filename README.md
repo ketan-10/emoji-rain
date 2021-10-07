@@ -49,3 +49,15 @@
 - [AWS CDK ApiGateway WebSoccket Docs](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-apigatewayv2-readme.html#websocket-api)
 
 - [How to use Outputs in AWS CDK & CDK Tokens](https://bobbyhadz.com/blog/aws-cdk-outputs)
+
+#### Distributed Applications
+
+- [Choosing the Right Messaging Service for Your Distributed App](https://youtu.be/4-JmX6MIDDI)
+
+- [The CAP Theorem](https://youtu.be/k-Yaq8AHlFA) 
+
+#### Lambda failuer handling
+
+- [Failure Handling Using a Lambda DLQ (Dead Letter Queue)](https://youtu.be/nqQh2KmHiLY)
+
+- [SNS to Lambda vs SNS to SQS to Lambda](https://stackoverflow.com/questions/42656485/sns-to-lambda-vs-sns-to-sqs-to-lambda)
