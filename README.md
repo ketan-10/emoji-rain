@@ -40,6 +40,8 @@
 
 - [Setting Up Github Actions for a React App on Github Pages](https://www.youtube.com/watch?v=N63C0mkFDFw&ab_channel=Keith%2CtheCoder)
 
+- Future migration to MySQL [How to connect AWS Lambda to a MySQL database to update it? (using RDS proxy)](https://youtu.be/jOLgUjcTFEI) 
+
 ### Documentation
 
 - [CDK Workshop](https://cdkworkshop.com/)
