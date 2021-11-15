@@ -40,7 +40,10 @@
 
 - [Setting Up Github Actions for a React App on Github Pages](https://www.youtube.com/watch?v=N63C0mkFDFw&ab_channel=Keith%2CtheCoder)
 
+### Database
 - Future migration to MySQL [How to connect AWS Lambda to a MySQL database to update it? (using RDS proxy)](https://youtu.be/jOLgUjcTFEI) 
+
+- MySQS DeadLock and Indexing [Blocking and Locking: How to Find and Fight Concurrency Problems](https://youtu.be/EqfAPZGKifA)
 
 ### Documentation
 
