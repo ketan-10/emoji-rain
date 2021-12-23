@@ -1,11 +1,11 @@
+## [Live Site](https://youtu.be/-wMsctEBC0w)
+
+# For Backend code please check [`server`](https://github.com/ketan-10/emoji-rain/tree/server) branch
+## [Youtube Lecture](https://youtu.be/-wMsctEBC0w)
+
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/35309821/129491883-bdece1cb-be6c-4b8a-86b0-67fc0c3a9a02.gif)
 
-### [Hosted URL](https://ketan-10.github.io/emoji-rain/)
-
-## [My Lecture](https://youtu.be/-wMsctEBC0w)
-
-### For Backend code please check [`server`](https://github.com/ketan-10/emoji-rain/tree/server) branch
 
 ## Setup
 
