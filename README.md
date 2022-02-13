@@ -7,6 +7,8 @@
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/35309821/129491883-bdece1cb-be6c-4b8a-86b0-67fc0c3a9a02.gif)
 
+## Architecture:
+![image](https://user-images.githubusercontent.com/35309821/153754461-b96ce281-482a-4b92-8677-cdc3ce77644e.png)
 
 ## Setup
 
