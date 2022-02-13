@@ -1,6 +1,9 @@
 ## [Live Site](https://youtu.be/-wMsctEBC0w)
 
 # For Backend code please check [`server`](https://github.com/ketan-10/emoji-rain/tree/server) branch
+
+![image](https://user-images.githubusercontent.com/35309821/153754441-33cde02d-c59b-4735-ac90-abcb03465206.png)
+
 ## [Youtube Lecture](https://youtu.be/-wMsctEBC0w)
 
 
