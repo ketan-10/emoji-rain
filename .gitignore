@@ -5,7 +5,7 @@ node_modules
 
 # lambda build
 lambdas/**/dist
-
+coverage
 # cdk outputs
 cdk-outputs.json
 

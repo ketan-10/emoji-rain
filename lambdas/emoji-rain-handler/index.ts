@@ -74,8 +74,6 @@ export const handler : Handler = async (event: APIGatewayProxyEvent): Promise<AP
       case '$disconnect':
           await deleteConnection(connectionId!);
           break;
-      case '$default':
-          break;
       case 'sendEmoji':
         // Parse body
         const {myEmoji} = JSON.parse(event.body);

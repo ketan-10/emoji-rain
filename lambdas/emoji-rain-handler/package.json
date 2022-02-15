@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "compile": "npx ncc build index.ts -o dist/ncc",
     "zip": "zip -j dist/deploy.zip ./dist/ncc/*",
     "build": "npm run compile && npm run zip"

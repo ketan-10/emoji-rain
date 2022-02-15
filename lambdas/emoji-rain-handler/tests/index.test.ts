@@ -15,7 +15,7 @@ beforeAll(() => {
   process.env.AWS_REGION = "us-west-2";
 });
 
-describe("Create Connection", () => {
+describe("Success Cases", () => {
   it("Emojis' to be sent", async () => {
     // lambda event
     const event = {
@@ -185,3 +185,28 @@ describe("Create Connection", () => {
     );
   });
 });
+
+describe("Failure Cases", () => {
+  it("Connection to be deleted", async () => {
+    // lambda event
+    const event = {
+      requestContext: {
+        connectionId: "123",
+        routeKey: "sendEmoji",
+      },
+      body: JSON.stringify({
+        junkData: "💩",
+      }),
+    };
+
+    // we imported down here so the environment variables can be injected
+    const { handler } = await import("../index");
+    const response = await handler(event, null, null);
+    expect(response).toEqual(
+      expect.objectContaining({
+        statusCode: 400,
+        body: expect.stringContaining("Invalid Emoji"),
+      }),
+    );
+  });
+})

@@ -31,6 +31,12 @@ jobs:
       working-directory: ./lambdas/emoji-rain-handler
       run: npm run test
 
+    - name: upload code coverage
+        uses: codecov/codecov-action@v2
+        with:
+          files: ./lambdas/emoji-rain-handler/coverage/clover.xml
+          fail_ci_if_error: true # optional (default = false)
+
     - name: Lambda - Build using NCC
       working-directory: ./lambdas/emoji-rain-handler
       run: npx ncc build index.ts -o dist/ncc
