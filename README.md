@@ -1,6 +1,7 @@
 ## [Live Site](https://youtu.be/-wMsctEBC0w)
 ![Gh-pages](https://github.com/ketan-10/emoji-rain/actions/workflows/deploy.web.yaml/badge.svg)
 ![AWS Deployement](https://github.com/ketan-10/emoji-rain/actions/workflows/deploy.aws.yaml/badge.svg)
+[![codecov](https://codecov.io/gh/ketan-10/emoji-rain/branch/server/graph/badge.svg)](https://codecov.io/gh/ketan-10/emoji-rain)
 # AWS CDK Infrasturcture as a code 
 ## For Fontend code please check [`master`](https://github.com/ketan-10/emoji-rain) branch
 ## [Youtube Lecture](https://youtu.be/-wMsctEBC0w)
