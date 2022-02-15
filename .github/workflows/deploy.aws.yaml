@@ -27,6 +27,10 @@ jobs:
       working-directory: ./lambdas/emoji-rain-handler
       run: npm i
 
+    - name: Lambda - Test
+      working-directory: ./lambdas/emoji-rain-handler
+      run: npm run test
+
     - name: Lambda - Build using NCC
       working-directory: ./lambdas/emoji-rain-handler
       run: npx ncc build index.ts -o dist/ncc
